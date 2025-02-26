@@ -43,11 +43,11 @@ zero_matrix = zeros(U, V);
 fprintf('\nStarting to make K-Map')
 
 
-for TrainImgIndex = 1:1
+for TrainImgIndex = 1:nTraining
     fprintf('\nProcessing  %d_train.jpg\n', TrainImgIndex);
 
     % read ground truth of one test face 
-    strh    = strcat('.\testFaces\',num2str(TrainImgIndex),'_test.jpg');
+    strh    = strcat('.\trainingFaces\',num2str(TrainImgIndex),'_h.jpg');
     im_h    = double(imread(strh));
 
     % generate the input LR face by smooth and down-sampleing
@@ -97,14 +97,14 @@ for TrainImgIndex = 1:1
     % disp(zero_matrix);
 end 
 
-zero_matrix = round(zero_matrix / 1);
+zero_matrix = round(zero_matrix / 360);
 %put 360
 disp(zero_matrix)
 
 fprintf("\nK map made, now testing begins\n")
 
 % nTesting = 11;
-for TestImgIndex = 1:1
+for TestImgIndex = 1:nTesting
     fprintf('\nProcessing  %d_test.jpg\n', TestImgIndex); 
     strh    = strcat('.\testFaces\',num2str(TestImgIndex),'_test.jpg');
     im_h    = double(imread(strh));

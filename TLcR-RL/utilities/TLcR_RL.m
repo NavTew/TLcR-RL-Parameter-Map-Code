@@ -43,7 +43,7 @@ function [im_SR] = TLcR_RL(im_l,YH,YL,upscale,patch_size,overlap,stepsize,window
             max_gen = 50;
             F = 0.8;
             CR = 0.9;
-            K_bounds = [1, 7];
+            K_bounds = [1, 3240];
             %with 360 put 3240
             pop = randi(K_bounds, [pop_size, 1]);
             fitness = arrayfun(@(k) computeError(k, D, X, XF, im_l_patch, tau), pop);
