@@ -1,6 +1,6 @@
 
 function [im_SR] = TLcR_RL(im_l,YH,YL,upscale,patch_size,overlap,stepsize,window,tau,K,c)
-
+    global zero_matrix
     [imrow, imcol, nTraining] = size(YH);
     Img_SUM      = zeros(imrow,imcol);
     overlap_FLAG = zeros(imrow,imcol);
@@ -41,22 +41,10 @@ function [im_SR] = TLcR_RL(im_l,YH,YL,upscale,patch_size,overlap,stepsize,window
             SX     =  sum(X'.*X', 2);
             D      =  repmat(XX, 1, nbase)-2*im_l_patch'*X+repmat(SX', nframe, 1);        
     
-            % thresholding      
-            % [val,index]=sort(D);        
-            % Xk  = X(:,index(1:K));        
-            % XFk = XF(:,index(1:K));      
-            % Dk = D(index(1:K));
-
-    
-            % Compute the optimal weight vector  for the input LR image patch  with the LR training image patches at position（i,j）
-            % z   =  Xk' - repmat(im_l_patch', K, 1);         
-            % C   =  z*z';                                                
-            % C   =  C + tau*diag(Dk)+eye(K,K)*(1e-6)*trace(C);   
-            % w   =  C\ones(K,1);  
-            % w   =  w/sum(w);    
+              
 
 
-            K_list = 1:360;
+            K_list = 1:7;
 
             best_K = K_list(1);  
             min_error = Inf;   % Initialize with a large value
@@ -93,6 +81,9 @@ function [im_SR] = TLcR_RL(im_l,YH,YL,upscale,patch_size,overlap,stepsize,window
                 end
             end
             fprintf('Best K selected: %d\n', best_K);
+            old_value = zero_matrix(i, j)
+            zero_matrix(i, j) = old_value + best_K;
+
 
            % Obtain the HR patch with the best weight vector w
             Img  = best_XFk * best_w; 

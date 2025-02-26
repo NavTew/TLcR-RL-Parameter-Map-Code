@@ -8,7 +8,7 @@ addpath('.\utilities');
 
 
 nTraining   = 360;        % number of training sample
-nTesting    = 1;         % number of ptest sample
+nTesting    = 2;         % number of ptest sample
 upscale     = 4;          % upscaling factor 
 patch_size  = 12;         % image patch size
 overlap     = 4;          % the overlap between neighborhood patches
@@ -23,6 +23,22 @@ c           = 10;         % the weight of the spatial feature
 
 % construct the HR and LR training pairs from the FEI face database
 [YH YL] = Training_LH(upscale,nTraining);
+
+[imrow, imcol, nTraining] = size(YH);
+Img_SUM      = zeros(imrow, imcol);
+overlap_FLAG = zeros(imrow, imcol);
+
+U = ceil((imrow - overlap) / (patch_size - overlap));  
+V = ceil((imcol - overlap) / (patch_size - overlap));  
+
+disp(U);
+disp(V);
+
+global zero_matrix;
+zero_matrix = zeros(U, V);
+
+
+
 
 for TestImgIndex = 1:nTesting
     fprintf('\nProcessing  %d_test.jpg\n', TestImgIndex);
@@ -73,6 +89,8 @@ for TestImgIndex = 1:nTesting
     fprintf('SSIM for Bicubic:  %f dB\n', bicubic_ssim(TestImgIndex));
     fprintf('SSIM for TLcR:     %f dB\n', TLcR_ssim(TestImgIndex));
 %    fprintf('SSIM for TLcR-RL:  %f dB\n', TLcRRL_ssim(layer,TestImgIndex));
+    disp(zero_matrix);
+
 
 end
 
