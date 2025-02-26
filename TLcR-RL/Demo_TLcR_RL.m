@@ -7,7 +7,7 @@ clc;close all;clear all;
 addpath('.\utilities');
 
 
-nTraining   = 360;        % number of training sample
+nTraining   = 1;        % number of training sample
 nTesting    = 2;         % number of ptest sample
 upscale     = 4;          % upscaling factor 
 patch_size  = 12;         % image patch size
@@ -38,6 +38,9 @@ global zero_matrix;
 zero_matrix = zeros(U, V);
 
 
+
+
+fprintf('\nStarting to make K-Map')
 
 
 for TestImgIndex = 1:nTesting
@@ -90,16 +93,55 @@ for TestImgIndex = 1:nTesting
     fprintf('SSIM for TLcR:     %f dB\n', TLcR_ssim(TestImgIndex));
 %    fprintf('SSIM for TLcR-RL:  %f dB\n', TLcRRL_ssim(layer,TestImgIndex));
     disp(zero_matrix);
+end 
+
+zero_matrix = round(zero_matrix / 2);
+disp(zero_matrix)
+
+% nTesting = 11;
+% for TestImgIndex = 9:nTesting
+%     fprintf('\nProcessing  %d_test.jpg\n', TestImgIndex); 
+%     strh    = strcat('.\testFaces\',num2str(TestImgIndex),'_test.jpg');
+%     im_h    = double(imread(strh));
+%     psf         = fspecial('average', [4 4]); 
+%     im_s    = imfilter(im_h,psf);
+%     im_l    = imresize(im_s,1/upscale,'bicubic');
+%     im_b = imresize(im_l,upscale,'bicubic');
+    
+%     tic;
+%     % hallucinate the high frequency face via TLcR
+%     [im_SR] = my_TLcR_RL(im_b,YH,YL,upscale,patch_size,overlap,stepsize,window,tau,K,c);     
+%     % add the high frequency face to result
+%     [im_SR] = im_SR+im_b;
+%     cputime(TestImgIndex) = toc;
+%     imwrite(uint8(im_SR),strcat('./results/',num2str(TestImgIndex),'_',num2str(tau),'_TLcR.bmp'),'bmp');  
+
+%     % compute PSNR and SSIM for Bicubi,c and TLcR method
+%     bicubic_psnr(TestImgIndex) = psnr(im_b,im_h);
+%     bicubic_ssim(TestImgIndex) = ssim(im_b,im_h);
+%     TLcR_psnr(TestImgIndex) = psnr(im_SR,im_h);
+%     TLcR_ssim(TestImgIndex) = ssim(im_SR,im_h);  
 
 
-end
+    
+%     % display the objective results (PSNR and SSIM)
+%     fprintf('PSNR for Bicubic:  %f dB\n', bicubic_psnr(TestImgIndex));
+%     fprintf('PSNR for TLcR:     %f dB\n', TLcR_psnr(TestImgIndex));
+% %    fprintf('PSNR for TLcR-RL:  %f dB\n', TLcRRL_psnr(layer,TestImgIndex));
+%     fprintf('SSIM for Bicubic:  %f dB\n', bicubic_ssim(TestImgIndex));
+%     fprintf('SSIM for TLcR:     %f dB\n', TLcR_ssim(TestImgIndex));
+% %    fprintf('SSIM for TLcR-RL:  %f dB\n', TLcRRL_ssim(layer,TestImgIndex));
+%     disp(zero_matrix);
+
+% end
 
 
-% fprintf('===============================================\n');
-% fprintf('Average PSNR for Bicubic:  %f dB\n', sum(bicubic_psnr)/nTesting);
-% fprintf('Average PSNR for TLcR:     %f dB\n', sum(TLcR_psnr)/nTesting);
-% fprintf('Average PSNR for TLcRRL:   %f dB\n', sum(TLcRRL_psnr(layer,:))/nTesting);
-% fprintf('Average SSIM for Bicubic:  %f dB\n', sum(bicubic_ssim)/nTesting);
-% fprintf('Average SSIM for TLcR:     %f dB\n', sum(TLcR_ssim)/nTesting);
-% fprintf('Average SSIM for TLcR:     %f dB\n', sum(TLcRRL_ssim(layer,:))/nTesting);
-% fprintf('===============================================\n');
+% % fprintf('===============================================\n');
+% % fprintf('Average PSNR for Bicubic:  %f dB\n', sum(bicubic_psnr)/nTesting);
+% % fprintf('Average PSNR for TLcR:     %f dB\n', sum(TLcR_psnr)/nTesting);
+% % fprintf('Average PSNR for TLcRRL:   %f dB\n', sum(TLcRRL_psnr(layer,:))/nTesting);
+% % fprintf('Average SSIM for Bicubic:  %f dB\n', sum(bicubic_ssim)/nTesting);
+% % fprintf('Average SSIM for TLcR:     %f dB\n', sum(TLcR_ssim)/nTesting);
+% % fprintf('Average SSIM for TLcR:     %f dB\n', sum(TLcRRL_ssim(layer,:))/nTesting);
+% % fprintf('===============================================\n');
+
