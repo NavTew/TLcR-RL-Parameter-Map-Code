@@ -9,9 +9,9 @@ function [im_SR] = my_TLcR_RL(im_l,YH,YL,upscale,patch_size,overlap,stepsize,win
     V = ceil((imcol-overlap)/(patch_size-overlap)); 
     
     for i = 1:U
-        fprintf('.');
-         for j = 1:V  
-            fprintf('.')
+        fprintf('.')
+        for j = 1:V  
+            
             % obtain the current patch position
             BlockSize  =  GetCurrentBlockSize(imrow,imcol,patch_size,overlap,i,j);    
             if size(YL,1) == size(YH,1)
@@ -30,10 +30,10 @@ function [im_SR] = my_TLcR_RL(im_l,YH,YL,upscale,patch_size,overlap,stepsize,win
             padpixel = (window-patch_size)/stepsize;
             XF = Reshape3D_20Connection(YH,BlockSize,stepsize,padpixel);
             X  = Reshape3D_20Connection_Spatial(YL,BlockSizeS,stepsize,padpixel,c);        
-           
+        
             % obtain the LR training patch feature by subtracting its mean
             X(1:end-2,:) = X(1:end-2,:)-repmat(mean(X(1:end-2,:)),size(X(1:end-2,:),1),1);
-         
+        
             % calculate the distances between current patch and the LR training patches
             nframe =  size(im_l_patch',1);
             nbase  =  size(X',1);
@@ -41,9 +41,9 @@ function [im_SR] = my_TLcR_RL(im_l,YH,YL,upscale,patch_size,overlap,stepsize,win
             SX     =  sum(X'.*X', 2);
             D      =  repmat(XX, 1, nbase)-2*im_l_patch'*X+repmat(SX', nframe, 1);        
     
-              
+            
 
-            best_K = zero_matrix(U,V)
+            best_K = zero_matrix(U,V);
                 
             % Find the best_K nearest neighbors
             [val, index] = sort(D);        
@@ -59,7 +59,7 @@ function [im_SR] = my_TLcR_RL(im_l,YH,YL,upscale,patch_size,overlap,stepsize,win
             w   = w / sum(w);    
 
 
-           
+        
             Img  =  XFk*w; 
             Img  = reshape(Img, patch_size, patch_size);
 

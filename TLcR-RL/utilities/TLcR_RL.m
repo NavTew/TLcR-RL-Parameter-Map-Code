@@ -8,8 +8,9 @@ function [im_SR] = TLcR_RL(im_l,YH,YL,upscale,patch_size,overlap,stepsize,window
     V = ceil((imcol-overlap)/(patch_size-overlap)); 
     
     for i = 1:U
-         for j = 1:V  
-            fprintf('.');
+        fprintf('.');
+        for j = 1:V  
+            
             % obtain the current patch position
             BlockSize  =  GetCurrentBlockSize(imrow,imcol,patch_size,overlap,i,j);    
             if size(YL,1) == size(YH,1)
@@ -26,24 +27,24 @@ function [im_SR] = TLcR_RL(im_l,YH,YL,upscale,patch_size,overlap,stepsize,window
             padpixel = (window-patch_size)/stepsize;
             XF = Reshape3D_20Connection(YH,BlockSize,stepsize,padpixel);
             X  = Reshape3D_20Connection_Spatial(YL,BlockSizeS,stepsize,padpixel,c);        
-           
+        
             X(1:end-2,:) = X(1:end-2,:) - repmat(mean(X(1:end-2,:)),size(X(1:end-2,:),1),1);
-         
+        
             nframe =  size(im_l_patch',1);
             nbase  =  size(X',1);
             XX     =  sum(im_l_patch'.*im_l_patch', 2);        
             SX     =  sum(X'.*X', 2);
             D      =  repmat(XX, 1, nbase) - 2*im_l_patch'*X + repmat(SX', nframe, 1);        
             
-            fprintf("DE starting for %d %d\n", i, j);
+            % fprintf("DE starting for %d %d\n", i, j);
 
             % Differential Evolution (DE) Implementation
             pop_size = 10;
             max_gen = 50;
             F = 0.8;
             CR = 0.9;
-            K_bounds = [1, 3240];
-            
+            K_bounds = [1, 7];
+            %with 360 put 3240
             pop = randi(K_bounds, [pop_size, 1]);
             fitness = arrayfun(@(k) computeError(k, D, X, XF, im_l_patch, tau), pop);
             
