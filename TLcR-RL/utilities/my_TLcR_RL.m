@@ -42,8 +42,8 @@ function [im_SR] = my_TLcR_RL(im_l,YH,YL,upscale,patch_size,overlap,stepsize,win
             D      =  repmat(XX, 1, nbase)-2*im_l_patch'*X+repmat(SX', nframe, 1);        
     
             
-
-            best_K = zero_matrix(U,V);
+            
+            best_K = zero_matrix(i,j);
                 
             % Find the best_K nearest neighbors
             [val, index] = sort(D);        

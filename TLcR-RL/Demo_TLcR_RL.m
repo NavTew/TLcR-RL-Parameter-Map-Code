@@ -7,8 +7,8 @@ clc;close all;clear all;
 addpath('.\utilities');
 
 
-nTraining   = 360;        % number of training sample
-nTesting    = 40;         % number of ptest sample
+nTraining   = 5;        % number of training sample
+nTesting    = 1;         % number of ptest sample
 upscale     = 4;          % upscaling factor 
 patch_size  = 12;         % image patch size
 overlap     = 4;          % the overlap between neighborhood patches
@@ -61,17 +61,17 @@ for TrainImgIndex = 1:nTraining
     % hallucinate the high frequency face via TLcR
     [im_SR] = TLcR_RL(im_b,YH,YL,upscale,patch_size,overlap,stepsize,window,tau,K,c);     
     % add the high frequency face to result
-    [im_SR] = im_SR+im_b;
-    cputime(TrainImgIndex) = toc;
+    %[im_SR] = im_SR+im_b;
+    %cputime(TrainImgIndex) = toc;
     % only for test images do we need imwrite
     % imwrite(uint8(im_SR),strcat('./results/',num2str(TrainImgIndex),'_',num2str(tau),'_TLcR.bmp'),'bmp');  
 
     % compute PSNR and SSIM for Bicubi,c and TLcR method
-    bicubic_psnr(TrainImgIndex) = psnr(im_b,im_h);
-    bicubic_ssim(TrainImgIndex) = ssim(im_b,im_h);
+    % bicubic_psnr(TrainImgIndex) = psnr(im_b,im_h);
+    % bicubic_ssim(TrainImgIndex) = ssim(im_b,im_h);
 
-    TLcR_psnr(TrainImgIndex) = psnr(im_SR,im_h);
-    TLcR_ssim(TrainImgIndex) = ssim(im_SR,im_h);  
+    % TLcR_psnr(TrainImgIndex) = psnr(im_SR,im_h);
+    % TLcR_ssim(TrainImgIndex) = ssim(im_SR,im_h);  
 
 
     % % updata the result by reproducing learning
@@ -96,8 +96,8 @@ for TrainImgIndex = 1:nTraining
 %    fprintf('SSIM for TLcR-RL:  %f dB\n', TLcRRL_ssim(layer,TrainImgIndex));
     % disp(zero_matrix);
 end 
-
-zero_matrix = round(zero_matrix / 360);
+disp(zero_matrix)
+zero_matrix = round(zero_matrix / nTraining);
 %put 360
 disp(zero_matrix)
 
