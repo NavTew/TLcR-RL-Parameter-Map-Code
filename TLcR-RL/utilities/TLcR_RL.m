@@ -61,7 +61,7 @@ function [im_SR] = TLcR_RL(im_l, YH, YL, upscale, patch_size, overlap, stepsize,
             max_gen = 50; % Maximum generations
             F = 0.8; % Mutation factor
             CR = 0.9; % Crossover rate
-            K_bounds = [1, 197]; % Range of K values
+            K_bounds = [1, 3239]; % Range of K values
             
             % Initialize population with random values in range
             pop = randi(K_bounds, [pop_size, 1]);

@@ -7,8 +7,8 @@ clc;close all;clear all;
 addpath('.\utilities');
 
 
-nTraining   = 22;        % number of training sample
-nTesting    = 10;         % number of ptest sample
+nTraining   = 360;        % number of training sample
+nTesting    = 40;         % number of ptest sample
 upscale     = 4;          % upscaling factor 
 patch_size  = 12;         % image patch size
 overlap     = 4;          % the overlap between neighborhood patches
