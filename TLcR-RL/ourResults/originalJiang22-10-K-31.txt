@@ -1,0 +1,79 @@
+Constructing the HR-LR training set...
+done.
+
+Processing  1_test.jpg
+...............
+PSNR for Bicubic:  26.238716 dB
+PSNR for TLcR:     28.928089 dB
+SSIM for Bicubic:  0.838146 dB
+SSIM for TLcR:     0.880404 dB
+
+Processing  2_test.jpg
+...............
+PSNR for Bicubic:  26.630197 dB
+PSNR for TLcR:     28.836423 dB
+SSIM for Bicubic:  0.835931 dB
+SSIM for TLcR:     0.868724 dB
+
+Processing  3_test.jpg
+...............
+PSNR for Bicubic:  28.370543 dB
+PSNR for TLcR:     30.971830 dB
+SSIM for Bicubic:  0.846163 dB
+SSIM for TLcR:     0.876901 dB
+
+Processing  4_test.jpg
+...............
+PSNR for Bicubic:  28.538243 dB
+PSNR for TLcR:     30.754786 dB
+SSIM for Bicubic:  0.837492 dB
+SSIM for TLcR:     0.861642 dB
+
+Processing  5_test.jpg
+...............
+PSNR for Bicubic:  25.557167 dB
+PSNR for TLcR:     27.611101 dB
+SSIM for Bicubic:  0.845783 dB
+SSIM for TLcR:     0.874097 dB
+
+Processing  6_test.jpg
+...............
+PSNR for Bicubic:  25.439425 dB
+PSNR for TLcR:     26.667016 dB
+SSIM for Bicubic:  0.829885 dB
+SSIM for TLcR:     0.855212 dB
+
+Processing  7_test.jpg
+...............
+PSNR for Bicubic:  28.091128 dB
+PSNR for TLcR:     30.132486 dB
+SSIM for Bicubic:  0.870647 dB
+SSIM for TLcR:     0.867430 dB
+
+Processing  8_test.jpg
+...............
+PSNR for Bicubic:  27.572486 dB
+PSNR for TLcR:     29.483293 dB
+SSIM for Bicubic:  0.855610 dB
+SSIM for TLcR:     0.857560 dB
+
+Processing  9_test.jpg
+...............
+PSNR for Bicubic:  27.249241 dB
+PSNR for TLcR:     30.101962 dB
+SSIM for Bicubic:  0.858182 dB
+SSIM for TLcR:     0.886608 dB
+
+Processing  10_test.jpg
+...............
+PSNR for Bicubic:  26.591971 dB
+PSNR for TLcR:     29.814435 dB
+SSIM for Bicubic:  0.839140 dB
+SSIM for TLcR:     0.891403 dB
+===============================================
+Average PSNR for Bicubic:  27.027912 dB
+Average PSNR for TLcR:     29.330142 dB
+Average SSIM for Bicubic:  0.845698 dB
+Average SSIM for TLcR:     0.871998 dB
+===============================================
+>> 

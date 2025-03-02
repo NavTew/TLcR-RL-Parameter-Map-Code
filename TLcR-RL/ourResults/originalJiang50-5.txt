@@ -1,0 +1,41 @@
+
+Processing  1_test.jpg
+...............
+PSNR for Bicubic:  26.238716 dB
+PSNR for TLcR:     31.126291 dB
+SSIM for Bicubic:  0.838146 dB
+SSIM for TLcR:     0.918782 dB
+
+Processing  2_test.jpg
+...............
+PSNR for Bicubic:  26.630197 dB
+PSNR for TLcR:     31.111830 dB
+SSIM for Bicubic:  0.835931 dB
+SSIM for TLcR:     0.912318 dB
+
+Processing  3_test.jpg
+...............
+PSNR for Bicubic:  28.370543 dB
+PSNR for TLcR:     33.879528 dB
+SSIM for Bicubic:  0.846163 dB
+SSIM for TLcR:     0.927866 dB
+
+Processing  4_test.jpg
+...............
+PSNR for Bicubic:  28.538243 dB
+PSNR for TLcR:     33.532006 dB
+SSIM for Bicubic:  0.837492 dB
+SSIM for TLcR:     0.916614 dB
+
+Processing  5_test.jpg
+...............
+PSNR for Bicubic:  25.557167 dB
+PSNR for TLcR:     30.485734 dB
+SSIM for Bicubic:  0.845783 dB
+SSIM for TLcR:     0.927577 dB
+===============================================
+Average PSNR for Bicubic:  27.066973 dB
+Average PSNR for TLcR:     32.027078 dB
+Average SSIM for Bicubic:  0.840703 dB
+Average SSIM for TLcR:     0.920632 dB
+===============================================
