@@ -7,8 +7,8 @@ clc;close all;clear all;
 addpath('.\utilities');
 
 
-nTraining   = 360;        % number of training sample
-nTesting    = 40;         % number of ptest sample
+nTraining   = 22;        % number of training sample
+nTesting    = 10;         % number of ptest sample
 upscale     = 4;          % upscaling factor 
 patch_size  = 12;         % image patch size
 overlap     = 4;          % the overlap between neighborhood patches
@@ -59,7 +59,14 @@ for TrainImgIndex = 1:nTraining
     
     tic;
     % hallucinate the high frequency face via TLcR
-    [im_SR] = TLcR_RL(im_b,YH,YL,upscale,patch_size,overlap,stepsize,window,tau,K,c);     
+
+
+
+    %[im_SR] = TLcR_RL(im_b,YH,YL,upscale,patch_size,overlap,stepsize,window,tau,K,c); 
+    [im_SR] = Greywolf(im_b,YH,YL,upscale,patch_size,overlap,stepsize,window,tau,K,c); 
+    
+    
+
     % add the high frequency face to result
     %[im_SR] = im_SR+im_b;
     %cputime(TrainImgIndex) = toc;

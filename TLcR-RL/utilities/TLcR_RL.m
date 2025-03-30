@@ -12,7 +12,6 @@ function [im_SR] = TLcR_RL(im_l, YH, YL, upscale, patch_size, overlap, stepsize,
         fprintf('.');
         for j = 1:V  
             
-            
             % Obtain the current patch position
             BlockSize  = GetCurrentBlockSize(imrow, imcol, patch_size, overlap, i, j);    
             if size(YL,1) == size(YH,1)
@@ -58,10 +57,10 @@ function [im_SR] = TLcR_RL(im_l, YH, YL, upscale, patch_size, overlap, stepsize,
 
             % Differential Evolution (DE) Implementation
             pop_size = 10; % Population size
-            max_gen = 50; % Maximum generations
+            max_gen = 40; % Maximum generations
             F = 0.8; % Mutation factor
             CR = 0.9; % Crossover rate
-            K_bounds = [1, 3239]; % Range of K values
+            K_bounds = [1, 197]; % Range of K values
             
             % Initialize population with random values in range
             pop = randi(K_bounds, [pop_size, 1]);
